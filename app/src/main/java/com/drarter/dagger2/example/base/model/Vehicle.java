@@ -19,6 +19,6 @@ public class Vehicle {
     }
 
     public int getSpeed() {
-        return motor.getRpm();
+        return motor.getSpeed();
     }
 }

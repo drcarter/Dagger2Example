@@ -2,25 +2,25 @@ package com.drarter.dagger2.example.base.model;
 
 public class Motor {
 
-    private int rpm;
+    private int speed;
 
     public Motor() {
-        this.rpm = 0;
+        this.speed = 0;
     }
 
-    public int getRpm() {
-        return rpm;
+    public int getSpeed() {
+        return speed;
     }
 
     public void accelerate(int value) {
-        rpm = rpm + value;
+        speed = speed + value;
     }
 
     public void setSpeed(int value) {
-        rpm = value;
+        speed = value;
     }
 
     public void brake() {
-        rpm = 0;
+        speed = 0;
     }
 }
