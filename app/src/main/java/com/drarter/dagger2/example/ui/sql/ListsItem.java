@@ -18,6 +18,7 @@ package com.drarter.dagger2.example.ui.sql;
 import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import com.drarter.dagger2.example.base.database.Db;
 import com.drarter.dagger2.example.base.database.TodoItem;
@@ -115,5 +116,12 @@ public class ListsItem implements Parcelable {
 
     public void setItemCount(int itemCount) {
         this.itemCount = itemCount;
+    }
+
+    public static ListsItem newInstance(@NonNull Cursor cursor) {
+        long id = Db.getLong(cursor, TodoList.ID);
+        String name = Db.getString(cursor, TodoList.NAME);
+        int itemCount = Db.getInt(cursor, ITEM_COUNT);
+        return new ListsItem(id, name, itemCount);
     }
 }

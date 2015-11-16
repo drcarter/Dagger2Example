@@ -17,6 +17,7 @@ import com.drarter.dagger2.example.base.database.Db;
 import com.drarter.dagger2.example.base.database.TodoItem;
 import com.drarter.dagger2.example.base.database.TodoList;
 import com.drarter.dagger2.example.base.fragment.BaseFragment;
+import com.drarter.dagger2.example.ui.sql.adapter.ItemsAdapter2;
 import com.squareup.sqlbrite.BriteDatabase;
 
 import javax.inject.Inject;
@@ -78,7 +79,8 @@ public final class ItemsFragment extends BaseFragment {
     View emptyView;
 
     private Listener listener;
-    private ItemsAdapter adapter;
+    //    private ItemsAdapter adapter;
+    private ItemsAdapter2 adapter;
     private CompositeSubscription subscriptions;
 
     private long getListId() {
@@ -98,7 +100,8 @@ public final class ItemsFragment extends BaseFragment {
         setHasOptionsMenu(true);
 
         listener = (Listener) activity;
-        adapter = new ItemsAdapter(activity);
+//        adapter = new ItemsAdapter(activity);
+        adapter = new ItemsAdapter2(activity, null, true);
     }
 
     @Override
@@ -124,19 +127,18 @@ public final class ItemsFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
         listView.setEmptyView(emptyView);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                TodoItem item = adapter.getItem(position);
-
-                boolean newValue = !item.isComplete();
-                db.update(TodoItem.TABLE, new TodoItem.Builder().complete(newValue).build(),
-                        TodoItem.ID + " = ?", String.valueOf(item.getId()));
+                Cursor cursor = (Cursor) adapter.getItem(position);
+                if (cursor != null) {
+                    TodoItem item = TodoItem.createInstance(cursor);
+                    boolean newValue = !item.isComplete();
+                    db.update(TodoItem.TABLE, new TodoItem.Builder().complete(newValue).build(),
+                            TodoItem.ID + " = ?", String.valueOf(item.getId()));
+                }
             }
         });
     }
@@ -148,7 +150,7 @@ public final class ItemsFragment extends BaseFragment {
 
         subscriptions = new CompositeSubscription();
 
-        Observable<Integer> itemCount = db.createQuery(TodoItem.TABLE, COUNT_QUERY, listId) //
+        Observable<Integer> itemCount = db.createQuery(TodoItem.TABLE, COUNT_QUERY, listId)
                 .map(new Func1<Query, Integer>() {
                     @Override
                     public Integer call(Query query) {
@@ -193,9 +195,13 @@ public final class ItemsFragment extends BaseFragment {
                                 getActivity().setTitle(title);
                             }
                         }));
-
         subscriptions.add(db.createQuery(TodoItem.TABLE, LIST_QUERY, listId)
-                .mapToList(TodoItem.MAPPER)
+                .map(new Func1<Query, Cursor>() {
+                    @Override
+                    public Cursor call(Query query) {
+                        return query.run();
+                    }
+                })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(adapter));

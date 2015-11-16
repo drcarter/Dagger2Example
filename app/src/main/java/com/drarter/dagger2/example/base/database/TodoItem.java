@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import rx.functions.Func1;
 
@@ -69,6 +70,15 @@ public class TodoItem implements Parcelable {
 
     public void setIsComplete(boolean isComplete) {
         this.isComplete = isComplete;
+    }
+
+    public static TodoItem createInstance(@NonNull Cursor cursor) {
+        long id = Db.getLong(cursor, ID);
+        long listId = Db.getLong(cursor, LIST_ID);
+        String description = Db.getString(cursor, DESCRIPTION);
+        boolean complete = Db.getBoolean(cursor, COMPLETE);
+
+        return new TodoItem(id, listId, description, complete);
     }
 
     public static final class Builder {

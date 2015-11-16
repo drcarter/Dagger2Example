@@ -18,8 +18,6 @@ import com.squareup.sqlbrite.BriteDatabase;
 
 import javax.inject.Inject;
 
-import rx.subjects.PublishSubject;
-
 import static butterknife.ButterKnife.findById;
 
 public final class NewItemFragment extends DialogFragment {
@@ -34,15 +32,12 @@ public final class NewItemFragment extends DialogFragment {
         return fragment;
     }
 
-    private final PublishSubject<String> createClicked = PublishSubject.create();
-
     @Inject
     BriteDatabase db;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         getComponent(SqlbriteActivityComponent.class).inject(this);
     }
 
@@ -62,21 +57,6 @@ public final class NewItemFragment extends DialogFragment {
         View view = LayoutInflater.from(context).inflate(R.layout.new_item, null);
 
         final EditText name = findById(view, android.R.id.input);
-//        Observable.combineLatest(createClicked, RxTextView.textChanges(name),
-//                new Func2<String, CharSequence, String>() {
-//                    @Override
-//                    public String call(String ignored, CharSequence text) {
-//                        return text.toString();
-//                    }
-//                }) //
-//                .observeOn(Schedulers.io())
-//                .subscribe(new Action1<String>() {
-//                    @Override
-//                    public void call(String description) {
-//                        db.insert(TodoItem.TABLE,
-//                                new TodoItem.Builder().listId(getListId()).description(description).build());
-//                    }
-//                });
 
         return new AlertDialog.Builder(context) //
                 .setTitle(R.string.new_item)
