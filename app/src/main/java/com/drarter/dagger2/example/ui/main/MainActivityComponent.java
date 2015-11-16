@@ -1,11 +1,13 @@
-package com.drarter.dagger2.example.internal.di.component;
+package com.drarter.dagger2.example.ui.main;
 
 import android.support.annotation.NonNull;
 
 import com.drarter.dagger2.example.internal.di.PerActivity;
+import com.drarter.dagger2.example.internal.di.component.ActivityComponent;
+import com.drarter.dagger2.example.internal.di.component.ApplicationComponent;
 import com.drarter.dagger2.example.internal.di.module.BikeModule;
-import com.drarter.dagger2.example.internal.di.module.MainActivityModule;
-import com.drarter.dagger2.example.ui.MainActivity;
+import com.drarter.dagger2.example.ui.main.MainActivityModule;
+import com.drarter.dagger2.example.ui.main.MainActivity;
 
 import dagger.Component;
 

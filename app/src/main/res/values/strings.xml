@@ -3,4 +3,11 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="create">Create</string>
+    <string name="cancel">Cancel</string>
+    <string name="new_list">New List</string>
+    <string name="new_list_hint">Name</string>
+    <string name="new_item">New Item</string>
+    <string name="new_item_hint">Description</string>
 </resources>

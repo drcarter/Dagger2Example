@@ -5,6 +5,7 @@ import android.app.Application;
 import com.drarter.dagger2.example.internal.di.component.ApplicationComponent;
 import com.drarter.dagger2.example.internal.di.component.DaggerApplicationComponent;
 import com.drarter.dagger2.example.internal.di.module.ApplicationModule;
+import com.drarter.dagger2.example.internal.di.module.DataBaseModule;
 
 public class ExampleApplication extends Application {
 
@@ -19,6 +20,7 @@ public class ExampleApplication extends Application {
     private void initApplicationComponent() {
         this.applicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
+                .dataBaseModule(new DataBaseModule(this))
                 .build();
     }
 
@@ -30,4 +32,5 @@ public class ExampleApplication extends Application {
     public void onTerminate() {
         super.onTerminate();
     }
+
 }

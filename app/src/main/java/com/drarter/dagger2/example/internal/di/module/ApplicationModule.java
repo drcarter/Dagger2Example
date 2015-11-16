@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.drarter.dagger2.example.ExampleApplication;
+import com.drarter.dagger2.example.internal.di.ApplicationContext;
 import com.drarter.dagger2.example.internal.di.PerApp;
 
 import javax.inject.Singleton;
@@ -23,6 +24,7 @@ public class ApplicationModule {
     }
 
     @Singleton
+    @ApplicationContext
     @Provides
     Context provideContext() {
         return this.billyApplication.getApplicationContext();

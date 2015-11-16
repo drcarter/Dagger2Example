@@ -1,4 +1,4 @@
-package com.drarter.dagger2.example.ui;
+package com.drarter.dagger2.example.ui.main;
 
 import android.support.annotation.Nullable;
 import android.view.Menu;
@@ -8,12 +8,9 @@ import android.widget.TextView;
 import com.drarter.dagger2.example.R;
 import com.drarter.dagger2.example.base.activity.BaseActivity;
 import com.drarter.dagger2.example.base.model.Bike;
-import com.drarter.dagger2.example.internal.di.component.ActivityComponent;
-import com.drarter.dagger2.example.internal.di.component.DaggerMainActivityComponent;
-import com.drarter.dagger2.example.internal.di.component.MainActivityComponent;
-import com.drarter.dagger2.example.internal.di.module.BikeModule;
-import com.drarter.dagger2.example.internal.di.module.MainActivityModule;
 import com.drarter.dagger2.example.base.model.Vehicle;
+import com.drarter.dagger2.example.internal.di.component.ActivityComponent;
+import com.drarter.dagger2.example.internal.di.module.BikeModule;
 
 import javax.inject.Inject;
 

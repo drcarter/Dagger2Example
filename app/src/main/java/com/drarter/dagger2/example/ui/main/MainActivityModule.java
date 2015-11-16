@@ -1,8 +1,8 @@
-package com.drarter.dagger2.example.internal.di.module;
+package com.drarter.dagger2.example.ui.main;
 
 import android.support.annotation.NonNull;
 
-import com.drarter.dagger2.example.ui.MainActivity;
+import com.drarter.dagger2.example.ui.main.MainActivity;
 
 import java.lang.ref.WeakReference;
 
