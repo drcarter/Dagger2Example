@@ -6,11 +6,15 @@ import android.support.annotation.Nullable;
 import com.drarter.dagger2.example.R;
 import com.drarter.dagger2.example.base.activity.BaseActivity;
 import com.drarter.dagger2.example.internal.di.component.ActivityComponent;
+import com.drarter.dagger2.example.ui.sql.fragment.ItemsFragment;
+import com.drarter.dagger2.example.ui.sql.fragment.ListsFragment;
+import com.drarter.dagger2.example.ui.sql.fragment.NewItemFragment;
+import com.drarter.dagger2.example.ui.sql.fragment.NewListFragment;
 import com.squareup.sqlbrite.BriteDatabase;
 
 import javax.inject.Inject;
 
-public class SqlbriteActivity extends BaseActivity implements ListsFragment.Listener, ItemsFragment.Listener {
+public class SqlbriteActivity extends BaseActivity implements ListsFragment.OnListsFragmentListener, ItemsFragment.OnItemsFragmentListener {
 
     @Inject
     BriteDatabase db;

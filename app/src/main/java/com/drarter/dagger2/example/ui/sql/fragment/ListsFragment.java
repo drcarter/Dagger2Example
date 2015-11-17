@@ -1,4 +1,4 @@
-package com.drarter.dagger2.example.ui.sql;
+package com.drarter.dagger2.example.ui.sql.fragment;
 
 import android.app.Activity;
 import android.database.Cursor;
@@ -13,6 +13,8 @@ import android.widget.ListView;
 
 import com.drarter.dagger2.example.R;
 import com.drarter.dagger2.example.base.fragment.BaseFragment;
+import com.drarter.dagger2.example.base.model.ListsItem;
+import com.drarter.dagger2.example.ui.sql.SqlbriteActivityComponent;
 import com.drarter.dagger2.example.ui.sql.adapter.ListsAdapter2;
 import com.squareup.sqlbrite.BriteDatabase;
 import com.squareup.sqlbrite.SqlBrite;
@@ -31,13 +33,14 @@ import static android.support.v4.view.MenuItemCompat.SHOW_AS_ACTION_IF_ROOM;
 import static android.support.v4.view.MenuItemCompat.SHOW_AS_ACTION_WITH_TEXT;
 
 public final class ListsFragment extends BaseFragment {
-    interface Listener {
+
+    public interface OnListsFragmentListener {
         void onListClicked(long id);
 
         void onNewListClicked();
     }
 
-    static ListsFragment newInstance() {
+    public static ListsFragment newInstance() {
         return new ListsFragment();
     }
 
@@ -49,7 +52,7 @@ public final class ListsFragment extends BaseFragment {
     @Bind(android.R.id.empty)
     View emptyView;
 
-    private Listener listener;
+    private OnListsFragmentListener onListsFragmentListener;
     private ListsAdapter2 adapter;
     private Subscription subscription;
 
@@ -61,14 +64,14 @@ public final class ListsFragment extends BaseFragment {
 
     @Override
     public void onAttach(Activity activity) {
-        if (!(activity instanceof Listener)) {
+        if (!(activity instanceof OnListsFragmentListener)) {
             throw new IllegalStateException("Activity must implement fragment Listener.");
         }
 
         super.onAttach(activity);
         setHasOptionsMenu(true);
 
-        listener = (Listener) activity;
+        onListsFragmentListener = (OnListsFragmentListener) activity;
         adapter = new ListsAdapter2(activity, null, true);
     }
 
@@ -80,7 +83,7 @@ public final class ListsFragment extends BaseFragment {
                 .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        listener.onNewListClicked();
+                        onListsFragmentListener.onNewListClicked();
                         return true;
                     }
                 });
@@ -102,7 +105,7 @@ public final class ListsFragment extends BaseFragment {
 
     @OnItemClick(android.R.id.list)
     void listClicked(long listId) {
-        listener.onListClicked(listId);
+        onListsFragmentListener.onListClicked(listId);
     }
 
     @Override

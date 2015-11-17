@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.drarter.dagger2.example.base.constant.Constants;
+import com.drarter.dagger2.example.base.model.TodoItem;
+import com.drarter.dagger2.example.base.model.TodoList;
 
 public class DbOpenHelper extends SQLiteOpenHelper {
 

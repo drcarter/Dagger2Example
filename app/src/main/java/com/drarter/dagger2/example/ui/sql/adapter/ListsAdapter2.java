@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
-import com.drarter.dagger2.example.ui.sql.ListsItem;
+import com.drarter.dagger2.example.base.model.ListsItem;
 
 import rx.functions.Action1;
 

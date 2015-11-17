@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.drarter.dagger2.example.ui.sql;
+package com.drarter.dagger2.example.base.model;
 
 import android.database.Cursor;
 import android.os.Parcel;
@@ -21,8 +21,6 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
 import com.drarter.dagger2.example.base.database.Db;
-import com.drarter.dagger2.example.base.database.TodoItem;
-import com.drarter.dagger2.example.base.database.TodoList;
 
 import java.util.Arrays;
 import java.util.Collection;

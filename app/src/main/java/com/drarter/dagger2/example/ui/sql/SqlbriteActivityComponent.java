@@ -5,6 +5,9 @@ import android.support.annotation.NonNull;
 import com.drarter.dagger2.example.internal.di.PerActivity;
 import com.drarter.dagger2.example.internal.di.component.ActivityComponent;
 import com.drarter.dagger2.example.internal.di.component.ApplicationComponent;
+import com.drarter.dagger2.example.ui.sql.fragment.ItemsFragment;
+import com.drarter.dagger2.example.ui.sql.fragment.ListsFragment;
+import com.drarter.dagger2.example.ui.sql.fragment.NewItemFragment;
 
 import dagger.Component;
 

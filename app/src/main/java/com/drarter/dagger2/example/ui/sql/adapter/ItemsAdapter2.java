@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.CheckedTextView;
 import android.widget.CursorAdapter;
 
-import com.drarter.dagger2.example.base.database.TodoItem;
+import com.drarter.dagger2.example.base.model.TodoItem;
 
 import rx.functions.Action1;
 

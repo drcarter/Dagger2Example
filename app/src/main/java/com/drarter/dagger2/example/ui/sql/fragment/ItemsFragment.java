@@ -1,4 +1,4 @@
-package com.drarter.dagger2.example.ui.sql;
+package com.drarter.dagger2.example.ui.sql.fragment;
 
 import android.app.Activity;
 import android.database.Cursor;
@@ -14,9 +14,10 @@ import android.widget.ListView;
 
 import com.drarter.dagger2.example.R;
 import com.drarter.dagger2.example.base.database.Db;
-import com.drarter.dagger2.example.base.database.TodoItem;
-import com.drarter.dagger2.example.base.database.TodoList;
+import com.drarter.dagger2.example.base.model.TodoItem;
+import com.drarter.dagger2.example.base.model.TodoList;
 import com.drarter.dagger2.example.base.fragment.BaseFragment;
+import com.drarter.dagger2.example.ui.sql.SqlbriteActivityComponent;
 import com.drarter.dagger2.example.ui.sql.adapter.ItemsAdapter2;
 import com.squareup.sqlbrite.BriteDatabase;
 
@@ -57,7 +58,7 @@ public final class ItemsFragment extends BaseFragment {
     private static final String TITLE_QUERY =
             "SELECT " + TodoList.NAME + " FROM " + TodoList.TABLE + " WHERE " + TodoList.ID + " = ?";
 
-    public interface Listener {
+    public interface OnItemsFragmentListener {
         void onNewItemClicked(long listId);
     }
 
@@ -78,7 +79,7 @@ public final class ItemsFragment extends BaseFragment {
     @Bind(android.R.id.empty)
     View emptyView;
 
-    private Listener listener;
+    private OnItemsFragmentListener onItemsFragmentListener;
     //    private ItemsAdapter adapter;
     private ItemsAdapter2 adapter;
     private CompositeSubscription subscriptions;
@@ -89,7 +90,7 @@ public final class ItemsFragment extends BaseFragment {
 
     @Override
     public void onAttach(Activity activity) {
-        if (!(activity instanceof Listener)) {
+        if (!(activity instanceof OnItemsFragmentListener)) {
             throw new IllegalStateException("Activity must implement fragment Listener.");
         }
 
@@ -99,7 +100,7 @@ public final class ItemsFragment extends BaseFragment {
 
         setHasOptionsMenu(true);
 
-        listener = (Listener) activity;
+        onItemsFragmentListener = (OnItemsFragmentListener) activity;
 //        adapter = new ItemsAdapter(activity);
         adapter = new ItemsAdapter2(activity, null, true);
     }
@@ -112,7 +113,7 @@ public final class ItemsFragment extends BaseFragment {
                 .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        listener.onNewItemClicked(getListId());
+                        onItemsFragmentListener.onNewItemClicked(getListId());
                         return true;
                     }
                 });

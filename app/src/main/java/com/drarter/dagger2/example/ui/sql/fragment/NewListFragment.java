@@ -1,4 +1,4 @@
-package com.drarter.dagger2.example.ui.sql;
+package com.drarter.dagger2.example.ui.sql.fragment;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.drarter.dagger2.example.R;
-import com.drarter.dagger2.example.base.database.TodoList;
+import com.drarter.dagger2.example.base.model.TodoList;
 import com.squareup.sqlbrite.BriteDatabase;
 
 import javax.inject.Inject;

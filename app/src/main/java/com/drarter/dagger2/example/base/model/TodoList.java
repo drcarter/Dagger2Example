@@ -1,9 +1,11 @@
-package com.drarter.dagger2.example.base.database;
+package com.drarter.dagger2.example.base.model;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.drarter.dagger2.example.base.database.Db;
 
 import java.util.ArrayList;
 import java.util.List;
