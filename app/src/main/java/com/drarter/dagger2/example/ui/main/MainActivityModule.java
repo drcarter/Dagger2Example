@@ -1,19 +1,16 @@
 package com.drarter.dagger2.example.ui.main;
 
+import android.app.Activity;
 import android.support.annotation.NonNull;
 
-import com.drarter.dagger2.example.ui.main.MainActivity;
-
-import java.lang.ref.WeakReference;
+import com.drarter.dagger2.example.internal.di.module.ActivityModule;
 
 import dagger.Module;
 
 @Module
-public class MainActivityModule {
+public class MainActivityModule extends ActivityModule{
 
-    private WeakReference<MainActivity> activityWeakReference;
-
-    public MainActivityModule(@NonNull MainActivity mainActivity) {
-        this.activityWeakReference = new WeakReference<MainActivity>(mainActivity);
+    public MainActivityModule(@NonNull Activity activity) {
+        super(activity);
     }
 }

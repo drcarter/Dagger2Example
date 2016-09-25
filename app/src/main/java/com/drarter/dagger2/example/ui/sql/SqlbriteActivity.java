@@ -39,7 +39,7 @@ public class SqlbriteActivity extends BaseActivity implements ListsFragment.OnLi
     protected ActivityComponent getInitializeCompoent() {
         return DaggerSqlbriteActivityComponent.builder()
                 .applicationComponent(getApplicationComponent())
-                .sqlbriteActivityModule(new SqlbriteActivityModule())
+                .sqlbriteActivityModule(new SqlbriteActivityModule(this))
                 .build();
     }
 
